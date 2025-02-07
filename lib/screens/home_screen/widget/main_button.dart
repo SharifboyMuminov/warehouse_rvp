@@ -4,10 +4,16 @@ import 'package:warehouse_rvp/utils/app_size.dart';
 import 'package:warehouse_rvp/utils/app_text_style.dart';
 
 class MainButton extends StatelessWidget {
-  const MainButton({super.key, this.onTab, this.title = ""});
+  const MainButton({
+    super.key,
+    this.onTab,
+    this.title = "",
+    this.titleSize = 18,
+  });
 
   final VoidCallback? onTab;
   final String title;
+  final int titleSize;
 
   @override
   Widget build(BuildContext context) {
@@ -17,14 +23,14 @@ class MainButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.r),
         ),
-        padding: EdgeInsets.symmetric(vertical: 8.he),
+        padding: EdgeInsets.symmetric(vertical: 8.he, horizontal: 10.we),
       ),
       onPressed: onTab,
       child: Text(
         title,
         style: AppTextStyle.nunitoSemiBold.copyWith(
           color: Colors.white,
-          fontSize: 18.sp,
+          fontSize: titleSize.sp,
         ),
       ),
     );

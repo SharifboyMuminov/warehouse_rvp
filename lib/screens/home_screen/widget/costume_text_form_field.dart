@@ -12,6 +12,7 @@ class CostumeTextFormField extends StatelessWidget {
     this.onChanged,
     this.textInputAction,
     this.textInputType,
+    this.maxLines = 1,
   });
 
   final String? label;
@@ -20,10 +21,12 @@ class CostumeTextFormField extends StatelessWidget {
   final ValueChanged<String>? onChanged;
   final TextInputAction? textInputAction;
   final TextInputType? textInputType;
+  final int? maxLines;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLines: maxLines,
       textInputAction: textInputAction ?? TextInputAction.next,
       keyboardType: textInputType,
       onChanged: onChanged,

@@ -45,5 +45,13 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+
+    <key>NSCameraUsageDescription</key>
+    <string>Rasmga olish uchun kamerangizga kirishimiz kerak.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Rasmlarni tanlash uchun bizga foto kutubxonangizga kirishimiz kerak.</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>Suratlarni saqlash uchun bizga foto kutubxonangizga ruxsat kerak.</string>
+
 </dict>
 </plist>

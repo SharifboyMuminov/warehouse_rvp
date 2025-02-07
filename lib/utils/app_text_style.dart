@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:warehouse_rvp/utils/app_colors.dart';
 
 class AppTextStyle {
-  // SeoulNamsan
+  AppTextStyle._();
+
   static TextStyle nunitoThin = const TextStyle(
     fontFamily: "Nunito",
     fontWeight: FontWeight.w200,

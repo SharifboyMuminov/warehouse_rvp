@@ -1,8 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:warehouse_rvp/bloc/product/product_bloc.dart';
+import 'package:warehouse_rvp/bloc/product/product_event.dart';
+import 'package:warehouse_rvp/data/models/product_model.dart';
 import 'package:warehouse_rvp/screens/home_screen/product/show_image_picker.dart';
 import 'package:warehouse_rvp/screens/home_screen/widget/costume_text_form_field.dart';
 import 'package:warehouse_rvp/screens/home_screen/widget/main_button.dart';
@@ -68,7 +72,6 @@ class _AddProductState extends State<AddProduct> {
                         CostumeTextFormField(
                           hintText: "Mahsulot qr kodinni kiriting...",
                           label: "Qr",
-                          textInputAction: TextInputAction.done,
                         ),
                         10.getH(),
                         CostumeTextFormField(
@@ -136,7 +139,21 @@ class _AddProductState extends State<AddProduct> {
                   width: width - (30.we),
                   child: MainButton(
                     title: "Saqlash",
-                    onTab: () {},
+                    onTab: () {
+                      context.read<ProductBloc>().add(
+                            ProductInsertEvent(
+                              ProductModel(
+                                id: 0,
+                                description: "asdfasdf",
+                                price: 1000,
+                                count: 1,
+                                imagePath: xFile!.path,
+                                productName: "Qonday",
+                                qrCode: "123124312341234",
+                              ),
+                            ),
+                          );
+                    },
                   ),
                 ),
                 10.getH(),

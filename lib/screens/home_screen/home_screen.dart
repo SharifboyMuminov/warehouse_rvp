@@ -8,6 +8,7 @@ import 'package:warehouse_rvp/bloc/product/product_state.dart';
 import 'package:warehouse_rvp/data/models/form_status.dart';
 import 'package:warehouse_rvp/screens/home_screen/product/add_product.dart';
 import 'package:warehouse_rvp/screens/home_screen/product/product_details_screen.dart';
+import 'package:warehouse_rvp/screens/home_screen/show_all_sum_product/show_all_sum_product_screen.dart';
 import 'package:warehouse_rvp/screens/home_screen/widget/costume_text_form_field.dart';
 import 'package:warehouse_rvp/screens/home_screen/widget/home_item.dart';
 import 'package:warehouse_rvp/utils/app_size.dart';
@@ -48,6 +49,27 @@ class _HomeScreenState extends State<HomeScreen> {
               fontSize: 20.sp,
             ),
           ),
+          actions: [
+            IconButton(
+              onPressed: () {
+                if (context.read<ProductBloc>().state.formStatus !=
+                    FormStatus.loading) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return ShowAllSumProductScreen();
+                      },
+                    ),
+                  );
+                }
+              },
+              icon: Icon(
+                Icons.event_note,
+                size: 20.we,
+              ),
+            ),
+          ],
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

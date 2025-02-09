@@ -10,6 +10,7 @@ import 'package:warehouse_rvp/bloc/product/product_bloc.dart';
 import 'package:warehouse_rvp/bloc/product/product_event.dart';
 import 'package:warehouse_rvp/data/models/product_model.dart';
 import 'package:warehouse_rvp/screens/home_screen/product/show_image_full_screen.dart';
+import 'package:warehouse_rvp/screens/home_screen/product/update_product.dart';
 import 'package:warehouse_rvp/screens/home_screen/widget/get_text.dart';
 import 'package:warehouse_rvp/screens/home_screen/widget/main_button.dart';
 import 'package:warehouse_rvp/utils/app_size.dart';
@@ -49,7 +50,18 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return UpdateProductScreen(
+                      productModel: widget.productModel,
+                    );
+                  },
+                ),
+              );
+            },
             icon: Icon(
               Icons.edit,
               color: Colors.black,
@@ -189,7 +201,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 mainTitle: productModel.price.toString(),
               ),
               GetText(
-                title: "Mahsulot hajmi:",
+                title: "Mahsulot soni:",
                 mainTitle: productModel.count.toString(),
               ),
               GetText(

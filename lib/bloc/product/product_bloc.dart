@@ -45,7 +45,10 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
         await _sqfliteSource.insertProduct(event.productModel);
 
     if (networkResponse.errorText.isEmpty) {
-      add(ProductFetchEvent());
+      emit(state.copyWith(statusMessage: "pop"));
+      Future.microtask(() {
+        add(ProductFetchEvent());
+      });
     } else {
       emit(
         state.copyWith(

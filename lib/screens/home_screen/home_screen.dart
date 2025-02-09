@@ -7,6 +7,7 @@ import 'package:warehouse_rvp/bloc/product/product_event.dart';
 import 'package:warehouse_rvp/bloc/product/product_state.dart';
 import 'package:warehouse_rvp/data/models/form_status.dart';
 import 'package:warehouse_rvp/screens/home_screen/product/add_product.dart';
+import 'package:warehouse_rvp/screens/home_screen/product/product_details_screen.dart';
 import 'package:warehouse_rvp/screens/home_screen/widget/costume_text_form_field.dart';
 import 'package:warehouse_rvp/screens/home_screen/widget/home_item.dart';
 import 'package:warehouse_rvp/utils/app_size.dart';
@@ -103,7 +104,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     itemCount: state.products.length,
                     itemBuilder: (BuildContext context, int index) {
                       return HomeItem(
-                        onTab: () {},
+                        onTab: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return ProductDetailsScreen(
+                                  productModel: state.products[index],
+                                );
+                              },
+                            ),
+                          );
+                        },
                         productModel: state.products[index],
                       );
                     },

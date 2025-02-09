@@ -33,20 +33,23 @@ class SqfliteSource {
     );
   }
 
+
+
   Future<void> _onCreate(Database db, int version) async {
     const idType = "INTEGER PRIMARY KEY AUTOINCREMENT";
     const textType = "TEXT NOT NULL";
-    const String intType = "INTEGER NOT NULL";
+    const intType = "INTEGER NOT NULL";
 
     await db.execute('''CREATE TABLE Products (
-      id $idType,
-      count $intType,
-      price REAL,
-      product_name $textType,
-      qr $textType,
-      description $textType,
-      image_path $textType
-    )''');
+  id $idType,
+  count $intType,
+  price REAL,
+  product_name $textType,
+  qr $textType,
+  description $textType,
+  image_path TEXT NOT NULL CHECK(LENGTH(image_path) <= 500)
+)''');
+
   }
 
   Future<NetworkResponse> insertProduct(ProductModel productModel) async {

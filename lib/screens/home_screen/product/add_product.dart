@@ -6,10 +6,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:warehouse_rvp/bloc/product/product_bloc.dart';
 import 'package:warehouse_rvp/bloc/product/product_event.dart';
+import 'package:warehouse_rvp/bloc/product/product_state.dart';
+import 'package:warehouse_rvp/data/models/form_status.dart';
 import 'package:warehouse_rvp/data/models/product_model.dart';
 import 'package:warehouse_rvp/screens/home_screen/product/show_image_picker.dart';
 import 'package:warehouse_rvp/screens/home_screen/widget/costume_text_form_field.dart';
 import 'package:warehouse_rvp/screens/home_screen/widget/main_button.dart';
+import 'package:warehouse_rvp/screens/home_screen/widget/show_error.dart';
 import 'package:warehouse_rvp/utils/app_size.dart';
 import 'package:warehouse_rvp/utils/app_text_style.dart';
 
@@ -22,6 +25,12 @@ class AddProduct extends StatefulWidget {
 
 class _AddProductState extends State<AddProduct> {
   XFile? xFile;
+
+  final TextEditingController _controllerName = TextEditingController();
+  final TextEditingController _controllerPrice = TextEditingController();
+  final TextEditingController _controllerCont = TextEditingController();
+  final TextEditingController _controllerQr = TextEditingController();
+  final TextEditingController _controllerDescription = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -54,27 +63,38 @@ class _AddProductState extends State<AddProduct> {
                     child: Column(
                       children: [
                         CostumeTextFormField(
+                          onChanged: (v) => setState(() {}),
+                          controller: _controllerName,
                           hintText: "Mahsulot nomini kiriting...",
                           label: "Mahsulot",
                         ),
                         10.getH(),
                         CostumeTextFormField(
+                          onChanged: (v) => setState(() {}),
+                          controller: _controllerPrice,
                           hintText: "Mahsulot narhini kiriting...",
                           label: "Narhi",
                           textInputType: TextInputType.number,
                         ),
                         10.getH(),
                         CostumeTextFormField(
+                          onChanged: (v) => setState(() {}),
+                          controller: _controllerCont,
                           hintText: "Mahsulot sonini kiriting...",
                           label: "Soni",
+                          textInputType: TextInputType.number,
                         ),
                         10.getH(),
                         CostumeTextFormField(
+                          onChanged: (v) => setState(() {}),
+                          controller: _controllerQr,
                           hintText: "Mahsulot qr kodinni kiriting...",
                           label: "Qr",
                         ),
                         10.getH(),
                         CostumeTextFormField(
+                          onChanged: (v) => setState(() {}),
+                          controller: _controllerDescription,
                           hintText: "Qoshimcha malumotni kiriting...",
                           label: "Qoshimcha",
                           textInputAction: TextInputAction.done,
@@ -135,21 +155,36 @@ class _AddProductState extends State<AddProduct> {
                   ),
                 ),
                 10.getH(),
+                BlocListener<ProductBloc, ProductState>(
+                  listener: (BuildContext context, state) {
+                    if (state.statusMessage == "pop") {
+                      Navigator.pop(context);
+                    }
+                    if (state.formStatus == FormStatus.error) {
+                      snackbarView(
+                        context,
+                        "Nimadir hatolik yuz berdi.",
+                      );
+                    }
+                  },
+                  child: SizedBox(),
+                ),
                 SizedBox(
                   width: width - (30.we),
                   child: MainButton(
+                    isActive: _checkInput(),
                     title: "Saqlash",
                     onTab: () {
                       context.read<ProductBloc>().add(
                             ProductInsertEvent(
                               ProductModel(
                                 id: 0,
-                                description: "asdfasdf",
-                                price: 1000,
-                                count: 1,
-                                imagePath: xFile!.path,
-                                productName: "Qonday",
-                                qrCode: "123124312341234",
+                                description: _controllerDescription.text,
+                                price: num.tryParse(_controllerPrice.text) ?? 0,
+                                count: int.tryParse(_controllerCont.text) ?? 0,
+                                imagePath: xFile?.path ?? "",
+                                productName: _controllerName.text,
+                                qrCode: _controllerQr.text,
                               ),
                             ),
                           );
@@ -163,5 +198,22 @@ class _AddProductState extends State<AddProduct> {
         ),
       ),
     );
+  }
+
+  bool _checkInput() {
+    return _controllerQr.text.isNotEmpty &&
+        _controllerName.text.isNotEmpty &&
+        _controllerCont.text.isNotEmpty &&
+        _controllerPrice.text.isNotEmpty;
+  }
+
+  @override
+  void dispose() {
+    _controllerQr.dispose();
+    _controllerCont.dispose();
+    _controllerPrice.dispose();
+    _controllerName.dispose();
+    _controllerDescription.dispose();
+    super.dispose();
   }
 }

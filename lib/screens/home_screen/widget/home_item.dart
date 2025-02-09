@@ -19,7 +19,7 @@ class HomeItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: onTab,
       child: Container(
         padding: EdgeInsets.all(10.we),
         margin: EdgeInsets.symmetric(vertical: 8.he, horizontal: 10.we),
@@ -57,14 +57,35 @@ class HomeItem extends StatelessWidget {
               ),
               5.getW(),
             ],
-            Expanded(
-              child: Text(
-                productModel.productName,
-                style: AppTextStyle.nunitoMedium.copyWith(
-                  fontSize: 16.sp,
-                  color: Colors.black,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  productModel.productName,
+                  style: AppTextStyle.nunitoMedium.copyWith(
+                    fontSize: 16.sp,
+                    color: Colors.black,
+                  ),
                 ),
-              ),
+                Row(
+                  children: [
+                    Text(
+                      "Qr Code: ",
+                      style: AppTextStyle.nunitoMedium.copyWith(
+                        fontSize: 14.sp,
+                      ),
+                    ),
+                    Text(
+                      productModel.qrCode,
+                      style: AppTextStyle.nunitoMedium.copyWith(
+                        fontSize: 16.sp,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ],
         ),

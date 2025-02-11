@@ -53,7 +53,7 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
         title: Text(
           "Mahsulotni yangilash",
           style: AppTextStyle.nunitoBold.copyWith(
-            fontSize: 20.sp,
+            fontSize: 16.sp,
           ),
         ),
       ),

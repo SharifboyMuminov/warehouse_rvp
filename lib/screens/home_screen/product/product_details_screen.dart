@@ -45,7 +45,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         title: Text(
           "Mahsulot tafsilotlari",
           style: AppTextStyle.nunitoBold.copyWith(
-            fontSize: 20.sp,
+            fontSize: 16.sp,
           ),
         ),
         actions: [

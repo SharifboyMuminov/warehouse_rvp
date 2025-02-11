@@ -11,6 +11,7 @@ import 'package:warehouse_rvp/screens/home_screen/product/product_details_screen
 import 'package:warehouse_rvp/screens/home_screen/show_all_sum_product/show_all_sum_product_screen.dart';
 import 'package:warehouse_rvp/screens/home_screen/widget/costume_text_form_field.dart';
 import 'package:warehouse_rvp/screens/home_screen/widget/home_item.dart';
+import 'package:warehouse_rvp/screens/home_screen/widget/show_error.dart';
 import 'package:warehouse_rvp/utils/app_size.dart';
 import 'package:warehouse_rvp/utils/app_text_style.dart';
 
@@ -46,12 +47,14 @@ class _HomeScreenState extends State<HomeScreen> {
           title: Text(
             "Ombor",
             style: AppTextStyle.nunitoBold.copyWith(
-              fontSize: 20.sp,
+              fontSize: 16.sp,
             ),
           ),
           actions: [
             IconButton(
               onPressed: () {
+                FocusScope.of(context).unfocus();
+
                 if (context.read<ProductBloc>().state.formStatus !=
                     FormStatus.loading) {
                   Navigator.push(
@@ -127,6 +130,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     itemBuilder: (BuildContext context, int index) {
                       return HomeItem(
                         onTab: () {
+                          FocusScope.of(context).unfocus();
+
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -144,7 +149,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 );
               },
-              listener: (BuildContext context, state) {},
+              listener: (BuildContext context, state) {
+                snackbarView(context, "Nimadir hato");
+              },
             ),
             SizedBox(),
           ],
@@ -154,6 +161,8 @@ class _HomeScreenState extends State<HomeScreen> {
           height: 55.we,
           child: FloatingActionButton(
             onPressed: () {
+              FocusScope.of(context).unfocus();
+
               Navigator.push(
                 context,
                 MaterialPageRoute(

@@ -39,7 +39,7 @@ class _ShowAllSumProductScreenState extends State<ShowAllSumProductScreen> {
         title: Text(
           "Ombor dagi jami summa",
           style: AppTextStyle.nunitoBold.copyWith(
-            fontSize: 20.sp,
+            fontSize: 16.sp,
           ),
         ),
       ),
@@ -57,17 +57,24 @@ class _ShowAllSumProductScreenState extends State<ShowAllSumProductScreen> {
                 },
               ),
             ),
-            Text(
-              NumberFormat("#,##0.00", "uz_UZ").format(getAllSum()),
-              style: AppTextStyle.nunitoBold.copyWith(
-                fontSize: 16.sp,
+            Padding(
+              padding:  EdgeInsets.symmetric(horizontal: 10.we),
+              child: Text(
+                NumberFormat("#,##0.00", "uz_UZ").format(getAllSum()),
+                style: AppTextStyle.nunitoBold.copyWith(
+                  fontSize: 16.sp,
+                ),
               ),
             ),
             5.getH(),
-            Text(
-              "Umumiy ombordagi mahsulotlar narhi.",
-              style: AppTextStyle.nunitoBold.copyWith(
-                fontSize: 16.sp,
+            Padding(
+              padding:  EdgeInsets.symmetric(horizontal: 10.we),
+              child: Text(
+                "Umumiy ombordagi mahsulotlar narhi.",
+                textAlign: TextAlign.center,
+                style: AppTextStyle.nunitoBold.copyWith(
+                  fontSize: 16.sp,
+                ),
               ),
             ),
             10.getH(),

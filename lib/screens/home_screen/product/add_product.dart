@@ -47,7 +47,7 @@ class _AddProductState extends State<AddProduct> {
             title: Text(
               "Mahsulot qo'shish",
               style: AppTextStyle.nunitoBold.copyWith(
-                fontSize: 20.sp,
+                fontSize: 16.sp,
               ),
             ),
           ),

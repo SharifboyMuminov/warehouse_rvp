@@ -150,7 +150,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               },
               listener: (BuildContext context, state) {
-                snackbarView(context, "Nimadir hato");
+                if (state.formStatus == FormStatus.error) {
+                  snackbarView(context, "Nimadir hato");
+                }
               },
             ),
             SizedBox(),
